@@ -4,11 +4,15 @@ import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
 
+// Connect to Backend (i.e. Motoko code)
+import { dkeeper_backend } from "declarations/dkeeper_backend";
+
 function App() {
   const [notes, setNotes] = useState([]);
 
   function addNote(newNote) {
     setNotes((prevNotes) => {
+      dkeeper_backend.createNote(newNote.title, newNote.content);
       return [...prevNotes, newNote];
     });
   }
