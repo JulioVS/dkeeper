@@ -19,11 +19,11 @@ actor DKeeper {
     };
 
     notes := List.push(newNote, notes);
-    Debug.print(debug_show(notes));
+    Debug.print(debug_show (notes));
   };
 
-  // Default dfx Greet function
-  public query func greet(name : Text) : async Text {
-    return "Hello, " # name # "!";
+  // Return all existing Notes
+  public query func readNotes() : async [Note] {
+    return List.toArray(notes);
   };
 };
