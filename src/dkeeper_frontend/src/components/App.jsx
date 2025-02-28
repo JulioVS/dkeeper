@@ -24,7 +24,7 @@ function App() {
 
   function addNote(newNote) {
     setNotes((prevNotes) => {
-      // Send new Note to Backend
+      // Send new Note to Backend (then update State)
       dkeeper_backend.createNote(newNote.title, newNote.content);
       return [newNote, ...prevNotes];
     });
@@ -32,6 +32,8 @@ function App() {
 
   function deleteNote(id) {
     setNotes((prevNotes) => {
+      // Remove target Note from Backend (then update State)
+      dkeeper_backend.removeNote(id);
       return prevNotes.filter((noteItem, index) => {
         return index !== id;
       });
